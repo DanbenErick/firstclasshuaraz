@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import logo from '../assets/logo.png';
+
+const destinations = [
+  { name: 'Anta', subtitle: 'Puerta de entrada al Callejón', img: '' },
+  { name: 'Laguna 69', subtitle: 'El azul más puro de los Andes', img: '' },
+  { name: 'Llanganuco', subtitle: 'Espejos de agua glaciar', img: '' },
+  { name: 'Chacas', subtitle: 'Arte y tradición en las nubes', img: '' },
+  
+  { name: 'Mateo Punta Olimpica', subtitle: 'Desafío de alta montaña', img: '' },
+  { name: 'Rocotuyoc', subtitle: 'El secreto mejor guardado', img: '' },
+  { name: 'Chavin de Huántar', subtitle: 'Legado milenario', img: '' },
+  { name: 'Pastoruri', subtitle: 'La ruta del cambio climático', img: '' },
+
+  { name: 'Laguna Paron', subtitle: 'El mirador supremo', img: '' },
+  { name: 'Vaqueria', subtitle: 'Caminos de pastores', img: '' },
+  { name: 'Huayhuash', subtitle: 'El trekking más bello del mundo', img: '' },
+  { name: 'Cashapampa', subtitle: 'Inicio de la gran aventura', img: '' },
+  
+  { name: 'Lima', subtitle: 'Conexión con la capital', img: '' },
+];
+---
+
+<Layout title="Nuestros Destinos | First Class Huaraz">
+  <div class="hidden md:block">
+    <Header />
+  </div>
+
+  <!-- Custom Mobile Top Nav (Image 3) -->
+  <div class="md:hidden fixed top-0 w-full bg-white z-50 flex items-center justify-between px-4 py-3 border-b border-outline-variant/10 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+    <a href="/" class="text-on-surface hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+    </a>
+    <span class="font-display font-extrabold text-[10px] tracking-[0.15em] text-primary">NUESTROS DESTINOS</span>
+    <div class="h-6"><img src={logo.src} alt="First Class Huaraz Logo" class="h-full w-auto object-contain" /></div>
+  </div>
+
+  <main class="pt-24 md:pt-32 pb-24 px-4 md:px-6 lg:px-12 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Top header section (Desktop) -->
+      <div class="hidden md:flex flex-col lg:flex-row lg:items-start justify-between gap-12 mb-16">
+        <div class="max-w-3xl">
+          <h1 class="font-display font-bold text-5xl md:text-6xl text-primary tracking-tight mb-6">
+            Nuestros Destinos
+          </h1>
+          <p class="font-body text-lg text-on-surface/80 leading-relaxed max-w-2xl">
+            Somos una Agencia de Viajes multiservicios turísticos, tenemos salidas diarias a lugares más visitados del Callejón de Huaylas, Cordillera Blanca y el Parque Nacional Huascarán, en grupos o en privado.
+          </p>
+        </div>
+
+        <div class="bg-surface-container-low border border-outline-variant/20 p-6 rounded-xl shrink-0 max-w-sm">
+          <p class="font-display font-bold text-[10px] tracking-[0.1em] text-on-surface uppercase mb-2">EXPLORA EL CALLEJÓN DE HUAYLAS</p>
+          <p class="font-body text-sm text-on-surface/70 italic">"La montaña nos llama y debemos ir."</p>
+        </div>
+      </div>
+
+      <!-- Top header section (Mobile) -->
+      <div class="md:hidden mb-8">
+         <h1 class="font-display font-bold text-4xl text-primary leading-tight tracking-tight mb-3">
+            Explora el<br/>Callejón de<br/>Huaylas
+         </h1>
+         <p class="font-body text-sm text-on-surface/70 leading-relaxed">
+            Somos una Agencia de Viajes multiservicios turísticos, tenemos salidas diarias a lugares más visitados del Callejón de Huaylas, Cordillera Blanca y el Parque Nacional Huascarán, en grupos o en privado.
+         </p>
+      </div>
+
+      <!-- Masonry Grid for Destinations -->
+      <div class="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+        {destinations.map((dest) => (
+          <div class="break-inside-avoid bg-surface-container-lowest rounded-2xl overflow-hidden shadow-ambient group cursor-pointer border border-outline-variant/10">
+            <!-- Image placeholder box -->
+            <div class="bg-surface-container-high w-full aspect-[4/3] md:aspect-[4/3] relative overflow-hidden">
+              {dest.img ? (
+                <img src={dest.img} alt={dest.name} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" />
+              ) : (
+                <div class="absolute inset-0 bg-[#011C38]/10">
+                  <img src="" class="w-full h-full object-cover" />
+                </div>
+              )}
+            </div>
+            <!-- Card content (Adaptable a la vista móvil tipo Image 3) -->
+            <div class="p-6 pb-5">
+              <span class="inline-block bg-primary/10 text-primary font-display font-bold text-[8px] md:text-[10px] tracking-widest uppercase px-2 py-1 rounded-sm mb-2">DESTINO</span>
+              <h3 class="font-display font-bold text-xl text-primary mb-1">{dest.name}</h3>
+              <p class="hidden md:block font-body text-sm text-on-surface/70">{dest.subtitle}</p>
+              <div class="mt-4 md:hidden flex items-center text-[10px] font-display font-bold tracking-widest uppercase text-on-surface/60">
+                VER DESTINO
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Bottom CTA Section -->
+      <div class="mt-32 w-full bg-primary rounded-3xl py-16 px-6 md:px-16 flex flex-col items-center text-center shadow-lg relative overflow-hidden">
+        <!-- Optional decorative gradients -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-primary/80 opacity-80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 max-w-2xl">
+          <h2 class="font-display font-bold text-4xl md:text-5xl text-white tracking-tight mb-6">¿Listo para la cumbre?</h2>
+          <p class="font-body text-lg text-white/80 leading-relaxed mb-10">
+            Personalizamos tu experiencia para que el Callejón de Huaylas se convierta en tu mejor historia.
+          </p>
+          <Button variant="secondary" className="!bg-white !text-primary hover:!bg-white/90">
+            Consultar Disponibilidad
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

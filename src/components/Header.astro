@@ -1,0 +1,111 @@
+---
+import Button from './Button.astro';
+import logo from '../assets/logo.png';
+import { getLangFromUrl, useTranslations, getRouteFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const route = getRouteFromUrl(Astro.url);
+
+const currentPath = Astro.url.pathname.replace(/\/$/, ""); // remove trailing slash
+const isEs = lang === 'es';
+const isEn = lang === 'en';
+
+// Definición de rutas base para chequeo activo
+const isHome = route === '/';
+const isDestinos = route === '/destinos';
+const isBeneficios = route === '/beneficios';
+
+// Rutas generadas (prefix)
+const basePrefix = isEs ? '' : `/${lang}`;
+---
+
+<header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 px-6 py-4 lg:px-12 bg-white md:bg-white/80 md:backdrop-blur-md border-b-[0.5px] border-outline-variant/15 shadow-sm md:shadow-none">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href={basePrefix || '/'} class="flex items-center">
+      <img src={logo.src} alt="First Class Huaraz Logo" class="h-8 md:h-12 w-auto object-contain" />
+    </a>
+
+    <!-- Navigation (Desktop) -->
+    <nav class="hidden md:flex space-x-8 items-center">
+      <a href={basePrefix || '/'} class={`font-body font-medium text-sm transition-colors ${isHome ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface hover:text-primary'}`}>{t('nav.home')}</a>
+      <a href={`${basePrefix}/destinos`} class={`font-body font-medium text-sm transition-colors ${isDestinos ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface hover:text-primary'}`}>{t('nav.destinations')}</a>
+      <a href={`${basePrefix}/beneficios`} class={`font-body font-medium text-sm transition-colors ${isBeneficios ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface hover:text-primary'}`}>{t('nav.benefits')}</a>
+      
+      <!-- Desktop Language Switcher -->
+      <div class="flex items-center space-x-2 pl-4 border-l border-outline-variant/30">
+        <a href={route} class={`font-display font-bold text-xs ${isEs ? 'text-primary' : 'text-on-surface/50 hover:text-primary'}`}>ES</a>
+        <span class="text-on-surface/30 text-xs">|</span>
+        <a href={`/en${route === '/' ? '' : route}`} class={`font-display font-bold text-xs ${isEn ? 'text-primary' : 'text-on-surface/50 hover:text-primary'}`}>EN</a>
+      </div>
+    </nav>
+
+    <!-- CTA -->
+    <div class="hidden md:block">
+      <Button href="#contacto" variant="primary" className="!py-2.5 !text-sm">{t('nav.contact')}</Button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden text-on-surface p-2 -mr-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/10">
+      <span class="font-display font-bold text-xl text-primary tracking-tight">{t('menu.title')}</span>
+      <button id="mobile-menu-close" class="p-2 -mr-2 text-on-surface">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="flex flex-col px-6 py-8 space-y-6 flex-1">
+      <a href={basePrefix || '/'} class="font-display font-medium text-2xl text-on-surface hover:text-primary">{t('nav.home')}</a>
+      <a href={`${basePrefix}/destinos`} class="font-display font-medium text-2xl text-on-surface hover:text-primary">{t('nav.destinations')}</a>
+      <a href={`${basePrefix}/beneficios`} class="font-display font-medium text-2xl text-on-surface hover:text-primary">{t('nav.benefits')}</a>
+      
+      <!-- Mobile Language Switcher inside Nav -->
+      <div class="mt-4 pt-6 border-t border-outline-variant/10 flex space-x-6">
+        <a href={route} class={`font-display font-bold text-lg ${isEs ? 'text-primary underline underline-offset-4 decoration-2' : 'text-on-surface/50'}`}>Español</a>
+        <a href={`/en${route === '/' ? '' : route}`} class={`font-display font-bold text-lg ${isEn ? 'text-primary underline underline-offset-4 decoration-2' : 'text-on-surface/50'}`}>English</a>
+      </div>
+
+      <div class="pt-8 mt-auto border-t border-outline-variant/20">
+        <Button href="#contacto" variant="primary" className="w-full justify-center !py-3">{t('nav.contact')}</Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Script que gestiona la apertura y cierre del menú móvil en Astro
+  const initMobileMenu = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const overlay = document.getElementById('mobile-menu-overlay');
+
+    if (btn && closeBtn && overlay) {
+      btn.addEventListener('click', () => {
+        overlay.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden'; // Prevenir scroll de fondo
+      });
+      
+      closeBtn.addEventListener('click', () => {
+        overlay.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      });
+    }
+  };
+
+  // Astro dispara astro:page-load en transiciones de vista, se asegura de que el listener siempre exista
+  document.addEventListener('astro:page-load', initMobileMenu);
+  initMobileMenu();
+</script>

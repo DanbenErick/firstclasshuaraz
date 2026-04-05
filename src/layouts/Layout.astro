@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import { getLangFromUrl, getRouteFromUrl } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "First Class Huaraz", description = "Conectamos tu viaje con la grandeza del Callejón de Huaylas, elevando cada kilómetro hacia una experiencia inolvidable." } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const route = getRouteFromUrl(Astro.url);
+
+// Generar rutas absolutas
+const siteUrl = "https://firstclasshuaraz.com";
+const esUrl = `${siteUrl}${route}`;
+const enUrl = `${siteUrl}/en${route === '/' ? '' : route}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		
+		<!-- SEO / i18n -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Etiquetas hreflang para SEO multi-idioma -->
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

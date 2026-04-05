@@ -1,0 +1,72 @@
+---
+import Button from './Button.astro';
+import logo from '../assets/logo.png';
+---
+
+<footer class="bg-surface-container-low pt-16 pb-8 border-t border-outline-variant/15 mt-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-b border-outline-variant/15 pb-12">
+      
+      <!-- Brand & Socials -->
+      <div class="space-y-6">
+        <a href="/" class="inline-block mt-2 mb-2">
+          <img src={logo.src} alt="First Class Huaraz Logo" class="h-12 md:h-16 w-auto object-contain" />
+        </a>
+        <p class="font-body text-sm text-on-surface/80 leading-relaxed max-w-xs">
+          Redefinimos el transporte terrestre en la región de Huaraz con un enfoque en el lujo y la naturaleza.
+        </p>
+        <div class="space-y-2">
+          <p class="font-display font-semibold text-xs tracking-wider text-on-surface uppercase">Redes Sociales</p>
+          <div class="flex space-x-4">
+            <!-- Icons would go here, using simple SVGs for now -->
+            <a href="#" aria-label="Facebook" class="text-on-surface hover:text-primary transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="text-on-surface hover:text-primary transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links: Empresa -->
+      <div class="space-y-6">
+        <h4 class="font-display font-semibold text-xs tracking-wider text-on-surface uppercase">Empresa</h4>
+        <ul class="space-y-3 font-body text-sm text-on-surface/80">
+          <li><a href="#" class="hover:text-primary transition-colors">Viajes Aventura</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Sostenibilidad</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Guías Locales</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Legal -->
+      <div class="space-y-6">
+        <h4 class="font-display font-semibold text-xs tracking-wider text-on-surface uppercase">Legal</h4>
+        <ul class="space-y-3 font-body text-sm text-on-surface/80">
+          <li><a href="#" class="hover:text-primary transition-colors">Políticas de Privacidad</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Términos de Servicio</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Buscador de pasajes</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="space-y-6 lg:max-w-[280px]">
+        <h4 class="font-display font-semibold text-xs tracking-wider text-on-surface uppercase">Boletín Informativo</h4>
+        <p class="font-body text-sm text-on-surface/80 leading-relaxed">
+          Únete a nuestra lista de expedición.
+        </p>
+        <form class="flex mt-2" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="Correo electrónico" class="flex-1 bg-surface-container-lowest border border-outline-variant/15 rounded-l-md px-4 py-2 font-body text-sm focus:outline-none focus:border-primary transition-colors" />
+          <Button variant="primary" className="!rounded-l-none !rounded-r-md !px-4 !py-2 !text-sm whitespace-nowrap">Unirse</Button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="mt-8 flex flex-col md:flex-row items-center justify-between">
+      <p class="font-body text-xs text-on-surface/60">
+        &copy; {new Date().getFullYear()} First Class Huaraz. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

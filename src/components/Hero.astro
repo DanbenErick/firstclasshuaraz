@@ -1,0 +1,187 @@
+---
+import Button from './Button.astro';
+---
+
+<section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+  <!-- Background Image with Gradient Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&q=80&w=2600" 
+      alt="Montañas majestuosas cubiertas de nieve" 
+      class="w-full h-full object-cover object-center"
+    />
+    <!-- Gradient overlay for text legibility (primary to transparent) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full mt-12 mb-24">
+    <div class="max-w-2xl">
+      <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight mb-6">
+        Tu viaje a la <br/> <span class="text-white/70">grandeza</span>
+      </h1>
+      <p class="font-body text-lg md:text-xl text-white/90 leading-relaxed mb-12 max-w-xl">
+        Explora los senderos más altos del Callejón de Huaylas con la comodidad y seguridad que solo un servicio premium puede ofrecer.
+      </p>
+
+      <!-- Glassmorphic Booking/Search Bar -->
+      <div class="w-full text-left">
+        <p class="text-white font-display font-bold mb-3 text-sm md:text-base">Buscador de pasajes</p>
+        
+          <div class="bg-surface-variant backdrop-blur-[24px] border border-white/20 p-4 md:p-6 rounded-2xl shadow-ambient" id="ticket-widget">
+          
+          <!-- Tipo de viaje -->
+          <div class="flex gap-2 mb-4">
+            <button type="button" id="btn-solo-ida" class="bg-white text-primary font-body font-bold text-[11px] md:text-xs px-4 py-2 rounded-full shadow-sm transition-colors">Solo Ida</button>
+            <button type="button" id="btn-ida-vuelta" class="text-white hover:text-primary hover:bg-white/90 font-body font-bold text-[11px] md:text-xs px-4 py-2 rounded-full border border-white/30 transition-colors">Ida y Vuelta</button>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 items-end w-full">
+        
+        <div class="w-full md:flex-1">
+          <label class="block font-display text-[10px] uppercase tracking-wider text-white/70 mb-1 ml-1">Origen</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <select id="origen-select" class="w-full bg-white/10 text-white border border-white/10 rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-white/40 focus:bg-white/20 transition-all font-body text-sm appearance-none cursor-pointer invalid:text-white/60" required>
+              <option value="" disabled selected hidden class="text-on-surface">¿De dónde sales?</option>
+              <option value="lima" class="text-on-surface">Lima</option>
+              <option value="huaraz" class="text-on-surface">Huaraz</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="w-full md:flex-1">
+          <label class="block font-display text-[10px] uppercase tracking-wider text-white/70 mb-1 ml-1">Destino</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </span>
+            <select id="destino-select" class="w-full bg-white/10 text-white border border-white/10 rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-white/40 focus:bg-white/20 transition-all font-body text-sm appearance-none cursor-pointer invalid:text-white/60" required>
+              <option value="" disabled selected hidden class="text-on-surface">¿Hacia dónde vas?</option>
+              <option value="huaraz" class="text-on-surface">Huaraz</option>
+              <option value="lima" class="text-on-surface">Lima</option>
+              <option value="laguna-paron" class="text-on-surface">Laguna Parón</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="w-full md:flex-1">
+          <label class="block font-display text-[10px] uppercase tracking-wider text-white/70 mb-1 ml-1">Ida</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </span>
+            <input type="text" onfocus="(this.type='date')" onblur="(this.type=(this.value?'date':'text'))" id="fecha-ida" placeholder="Añadir fecha" class="w-full bg-white/10 text-white placeholder-white/60 border border-white/10 rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-white/40 focus:bg-white/20 transition-all font-body text-[13px] date-inverted" required />
+          </div>
+        </div>
+        
+        <div class="w-full md:flex-1 hidden opacity-50" id="container-vuelta">
+          <label class="block font-display text-[10px] uppercase tracking-wider text-white/70 mb-1 ml-1">Regreso</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </span>
+            <input type="text" onfocus="(this.type='date')" onblur="(this.type=(this.value?'date':'text'))" id="fecha-vuelta" placeholder="Añadir fecha" class="w-full bg-white/10 text-white placeholder-white/60 border border-white/10 rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-white/40 focus:bg-white/20 transition-all font-body text-[13px] date-inverted" />
+          </div>
+        </div>
+
+        <div class="w-full md:w-auto">
+          <button id="btn-buscar" class="bg-primary text-white font-body font-bold text-sm w-full shadow-lg py-[11px] px-6 border border-white/10 rounded-lg group whitespace-nowrap flex items-center justify-center hover:bg-primary/90 transition-colors">
+            BUSCAR
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<style>
+/* Corrige el icon color del input date en fondos oscuros */
+.date-inverted::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+  cursor: pointer;
+}
+</style>
+
+<script>
+  const initBookingWidget = () => {
+    const btnSoloIda = document.getElementById('btn-solo-ida');
+    const btnIdaVuelta = document.getElementById('btn-ida-vuelta');
+    const containerVuelta = document.getElementById('container-vuelta');
+    const btnBuscar = document.getElementById('btn-buscar');
+    
+    let esSoloIda = true;
+
+    // Toggle logic
+    const updateTypes = () => {
+      if(esSoloIda) {
+        btnSoloIda.classList.add('bg-white', 'text-primary');
+        btnSoloIda.classList.remove('text-white', 'hover:bg-white/90', 'border', 'border-white/30');
+        
+        btnIdaVuelta.classList.remove('bg-white', 'text-primary');
+        btnIdaVuelta.classList.add('text-white', 'hover:bg-white/90', 'border', 'border-white/30');
+
+        containerVuelta.classList.add('hidden');
+      } else {
+        btnIdaVuelta.classList.add('bg-white', 'text-primary');
+        btnIdaVuelta.classList.remove('text-white', 'hover:bg-white/90', 'border', 'border-white/30');
+        
+        btnSoloIda.classList.remove('bg-white', 'text-primary');
+        btnSoloIda.classList.add('text-white', 'hover:bg-white/90', 'border', 'border-white/30');
+
+        containerVuelta.classList.remove('hidden');
+        containerVuelta.classList.remove('opacity-50');
+      }
+    };
+
+    if (btnSoloIda && btnIdaVuelta) {
+      btnSoloIda.addEventListener('click', () => { esSoloIda = true; updateTypes(); });
+      btnIdaVuelta.addEventListener('click', () => { esSoloIda = false; updateTypes(); });
+    }
+
+    // Helper para formato de fecha de YYYY-MM-DD a DD-MM-YYYY
+    const formatDate = (dateStr) => {
+      if(!dateStr) return '';
+      const [year, month, day] = dateStr.split('-');
+      return `${day}-${month}-${year}`;
+    };
+
+    // Construcción de la URL
+    if (btnBuscar) {
+      btnBuscar.addEventListener('click', (e) => {
+        e.preventDefault();
+        const origen = document.getElementById('origen-select').value;
+        const destino = document.getElementById('destino-select').value;
+        const idaRaw = document.getElementById('fecha-ida').value;
+        const vueltaRaw = document.getElementById('fecha-vuelta').value;
+
+        if(!idaRaw) {
+          alert('Por favor selecciona la fecha de ida.');
+          return;
+        }
+
+        const ida = formatDate(idaRaw);
+        const urlParams = '?utm_campaign=whitelabel%3Futm_campaign%3Dwhitelabel&utm_source=senda';
+        let url = '';
+
+        if(esSoloIda || !vueltaRaw) {
+          url = `https://www.recorrido.pe/first-class-huaraz/es/bus/${origen}/${destino}/${ida}${urlParams}`;
+        } else {
+          const vuelta = formatDate(vueltaRaw);
+          url = `https://www.recorrido.pe/first-class-huaraz/es/bus/${origen}/${destino}/${ida}/${vuelta}${urlParams}`;
+        }
+
+        window.open(url, '_blank');
+      });
+    }
+  };
+
+  // Run immediately and on view transitions (astro:page-load)
+  document.addEventListener('astro:page-load', initBookingWidget);
+  initBookingWidget();
+</script>
