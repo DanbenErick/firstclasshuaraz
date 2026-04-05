@@ -4,15 +4,21 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import logo from '../assets/logo.png';
+import limaImg from '../assets/Lima.webp';
+import laguna69Img from '../assets/Laguna-69.webp';
+import llanganucoImg from '../assets/Llanganuco.webp';
+import antaImg from '../assets/Anta.webp';
+import chacasImg from '../assets/Chacas.webp';
+import rocotuyocImg from '../assets/Rocotuyoc.webp';
 
 const destinations = [
-  { name: 'Anta', subtitle: 'Puerta de entrada al Callejón', img: '' },
-  { name: 'Laguna 69', subtitle: 'El azul más puro de los Andes', img: '' },
-  { name: 'Llanganuco', subtitle: 'Espejos de agua glaciar', img: '' },
-  { name: 'Chacas', subtitle: 'Arte y tradición en las nubes', img: '' },
+  { name: 'Anta', subtitle: 'Puerta de entrada al Callejón', img: antaImg.src },
+  { name: 'Laguna 69', subtitle: 'El azul más puro de los Andes', img: laguna69Img.src },
+  { name: 'Llanganuco', subtitle: 'Espejos de agua glaciar', img: llanganucoImg.src },
+  { name: 'Chacas', subtitle: 'Arte y tradición en las nubes', img: chacasImg.src },
   
   { name: 'Mateo Punta Olimpica', subtitle: 'Desafío de alta montaña', img: '' },
-  { name: 'Rocotuyoc', subtitle: 'El secreto mejor guardado', img: '' },
+  { name: 'Rocotuyoc', subtitle: 'El secreto mejor guardado', img: rocotuyocImg.src },
   { name: 'Chavin de Huántar', subtitle: 'Legado milenario', img: '' },
   { name: 'Pastoruri', subtitle: 'La ruta del cambio climático', img: '' },
 
@@ -21,7 +27,7 @@ const destinations = [
   { name: 'Huayhuash', subtitle: 'El trekking más bello del mundo', img: '' },
   { name: 'Cashapampa', subtitle: 'Inicio de la gran aventura', img: '' },
   
-  { name: 'Lima', subtitle: 'Conexión con la capital', img: '' },
+  { name: 'Lima', subtitle: 'Conexión con la capital', img: limaImg.src },
 ];
 ---
 
